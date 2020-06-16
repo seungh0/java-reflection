@@ -57,6 +57,25 @@ public class App {
 					System.out.println(Modifier.isPublic(modifiers));
 					System.out.println(Modifier.isStatic(modifiers));
 				});
+
+		System.out.println("=== getAnnotation ==");
+		Arrays.stream(Book.class.getAnnotations())
+				.forEach(System.out::println); // Empty 조회가 안됨  => @me.will.MyAnnotation()
+		/**
+		 * 이유 : Annotation은 기본적으로 런타임시에 로드되지 않음. (Class까지 남음)
+		 * => 런타임시에도 같이 읽어오고 싶다 @Retention(RunTime)  설정해야함
+		 */
+
+		System.out.println("=== MyBook Annotation");
+		Arrays.stream(MyBook.class.getAnnotations())
+				.forEach(System.out::println); // 기본적으로 어노테이션은 상속이 안됨 하지만 @Inherited 설정시 상속가능
+
+		System.out.println("== fields' annotation ===");
+		Arrays.stream(Book.class.getDeclaredFields())
+				.forEach(f -> {
+					Arrays.stream(f.getAnnotations())
+							.forEach(System.out::println);
+				});
 	}
 
 }
