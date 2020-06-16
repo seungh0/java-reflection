@@ -1,42 +1,24 @@
 package me.will;
 
-@MyAnnotation(number = 100)
 public class Book {
 
-	@MyAnnotation(name = "seungho", number = 10) // 컴파일 에러 X (Target 설정)
-	private String a = "a";
+	public static String A = "A";
 
-	private static String B = "BOOK";
+	private String B = "B";
 
-	private static final String C = "BOOK";
-
-	@AnotherAnnotation
-	public String d = "d";
-
-	protected String e = "e";
-
-	@AnotherAnnotation
 	public Book() {
 	}
 
-	//	@MyAnnotation // 컴파일 에러 (Target x)
-	public Book(String a, String d, String e) {
-		this.a = a;
-		this.d = d;
-		this.e = e;
+	public Book(String b) {
+		B = b;
 	}
 
-	@AnotherAnnotation
-	private void f() {
-		System.out.println("F");
+	private void c() {
+		System.out.println("Method C()");
 	}
 
-	public void g() {
-		System.out.println("g");
-	}
-
-	public int h() {
-		return 100;
+	public int sum(int left, int right) {
+		return left + right;
 	}
 
 }
